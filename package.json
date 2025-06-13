@@ -7,7 +7,7 @@
     "build": "npm run build:client && npm run build:server",
     "build:client": "exit 0; vite build src/entry-client.tsx --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
-    "serve": "NODE_ENV=production node server",
+    "serve": "set NODE_ENV=production && node server",
     "debug": "node --inspect-brk server"
   },
   "dependencies": {
@@ -32,6 +32,7 @@
     "@types/react-dom": "^19.0.1",
     "@vitejs/plugin-react": "^4.3.4",
     "compression": "^1.7.5",
+    "cross-env": "^7.0.3",
     "express": "^4.21.2",
     "isbot": "^5.1.22",
     "node-fetch": "^3.3.2",

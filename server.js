@@ -1,15 +1,27 @@
 import path from 'node:path'
 import express from 'express'
 import getPort, { portNumbers } from 'get-port'
+import { fileURLToPath } from 'node:url'
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 export async function createServer(
+  hmrPort,
   root = process.cwd(),
   isProd = process.env.NODE_ENV === 'production',
-  hmrPort,
 ) {
   const app = express()
+  if (isProd) {
+      const compression = (await import('compression')).default
+      const serveStatic = (await import('serve-static')).default
+      const resolve = (p) => path.resolve(__dirname, p)
+  
+      app.use(compression())
+      app.use(serveStatic(resolve('dist/client'), { index: false }))
+    }
 
   /**
    * @type {import('vite').ViteDevServer}

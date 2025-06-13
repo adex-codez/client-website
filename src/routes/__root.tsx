@@ -8,7 +8,6 @@ import {
 } from '@tanstack/react-router'
 import type { RouterContext } from '../routerContext'
 import { useState } from 'react';
-import "../styles.css"
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   head: () => ({
