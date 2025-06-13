@@ -15,16 +15,16 @@ export async function createServer(
   isProd = process.env.NODE_ENV === 'production',
 ) {
   
-  console.log(isProd)
   const app = express()
   if (isProd) {
       const compression = (await import('compression')).default
       const serveStatic = (await import('serve-static')).default
       const resolve = (p) => path.resolve(__dirname, p)
+      console.log(resolve("dist/client"))
   
       app.use(compression())
       app.use(serveStatic(resolve('dist/client'), { index: false }))
-    }
+  }
 
   /**
    * @type {import('vite').ViteDevServer}
