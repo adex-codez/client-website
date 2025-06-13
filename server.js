@@ -21,6 +21,17 @@ export async function createServer(
       const serveStatic = (await import('serve-static')).default
       const resolve = (p) => path.resolve(__dirname, p)
       console.log(resolve("dist/client"))
+      
+      const clientDistPath = resolve('dist/client')
+        console.log('Resolved dist/client path:', clientDistPath)
+      
+        try {
+          const files = await fs.readdir(clientDistPath)
+          console.log('Contents of dist/client:')
+          files.forEach((file) => console.log(' -', file))
+        } catch (err) {
+          console.error('Failed to read dist/client:', err)
+     }
   
       app.use(compression())
       app.use(serveStatic(resolve('dist/client'), { index: false }))
@@ -69,7 +80,7 @@ export async function createServer(
       let viteHead = !isProd
         ? await vite.transformIndexHtml(
             url,
-            `<html><head></head><body></body></html>`,
+            "<html><head></head><body></body></html>",
           )
         : ''
 
@@ -80,10 +91,11 @@ export async function createServer(
 
       const entry = await (async () => {
         if (!isProd) {
+          print("isProd")
           return vite.ssrLoadModule('/src/entry-server.tsx')
-        } else {
-          return import('./dist/server/entry-server.js')
         }
+        
+        return import('./dist/server/entry-server.js')
       })()
 
       console.info('Rendering: ', url, '...')
