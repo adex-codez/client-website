@@ -8,6 +8,8 @@ const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+console.log(process.env.NODE_ENV)
+
 export async function createServer(
   hmrPort,
   root = process.cwd(),
