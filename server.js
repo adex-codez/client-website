@@ -21,21 +21,20 @@ export async function createServer(
       const compression = (await import('compression')).default
       const serveStatic = (await import('serve-static')).default
       const resolve = (p) => path.resolve(__dirname, p)
-      console.log(resolve("dist/client"))
       
-      const clientDistPath = resolve('dist')
+      const clientDistPath = resolve('dist/server')
         console.log('Resolved dist/client path:', clientDistPath)
       
         try {
           const files = await fs.readdir(clientDistPath)
-          console.log('Contents of dist/client:')
+          console.log('Contents of dist/server:')
           files.forEach((file) => console.log(' -', file))
         } catch (err) {
-          console.error('Failed to read dist/client:', err)
+          console.error('Failed to read dist/server:', err)
      }
   
       app.use(compression())
-      app.use(serveStatic(resolve('dist/client'), { index: false }))
+      app.use(serveStatic(resolve('dist/server'), { index: false }))
   }
 
   /**
