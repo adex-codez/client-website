@@ -1,0 +1,41 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import "tailwindcss";
+
+@layer {
+  body {
+    font-family: 'Montserrat', sans-serif;
+    @apply leading-7;
+  }
+}
+
+@theme {
+  /* Primary - Yellow */
+  --color-primary-50:  #fffef3;
+  --color-primary-100: #fffcca;
+  --color-primary-200: #fff59c;
+  --color-primary-300: #ffed65;
+  --color-primary-400: #ffe433;
+  --color-primary-500: #ffde03; /* Base color */
+  --color-primary-600: #d1b002;
+  --color-primary-700: #a38602;
+  --color-primary-800: #705701;
+  --color-primary-900: #403000; 
+
+  /* Secondary - Blue */
+  --color-secondary-50:  #eff6ff;
+  --color-secondary-100: #dbeafe;
+  --color-secondary-200: #bfdbfe;
+  --color-secondary-300: #93c5fd;
+  --color-secondary-400: #60a5fa;
+  --color-secondary-500: #3b82f6;
+  --color-secondary-600: #2563eb;
+  --color-secondary-700: #1d4ed8;
+  --color-secondary-800: #1e40af;
+  --color-secondary-900: #1e3a8a;
+  
+  --color-background: #fef0ca;
+  
+  --font-heading: "Bebas Neue", sans-serif; 
+}
