@@ -17,6 +17,7 @@ export async function createServer(
   
   const app = express()
   if (isProd) {
+      const fs = await import('node:fs/promises') 
       const compression = (await import('compression')).default
       const serveStatic = (await import('serve-static')).default
       const resolve = (p) => path.resolve(__dirname, p)
